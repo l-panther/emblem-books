@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BookCover from '../../components/BookCover.astro';
+import { books } from '../../data/books.js';
+
+export function getStaticPaths() {
+  return books.map((book) => ({ params: { slug: book.slug }, props: { book } }));
+}
+
+const { book } = Astro.props;
+---
+
+<Layout title={book.title} active="books">
+  <section class="section">
+    <div class="wrap" style="display:grid; grid-template-columns:0.6fr 1fr; gap:56px; align-items:start;">
+      <div class="shelf">
+        <div style="max-width:320px; margin:0 auto;">
+          <BookCover title={book.title} author={book.author} color={book.color} tag={`${book.era} c.`} />
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">{book.era} Century</p>
+        <h1>{book.title}</h1>
+        <p class="book-author" style="font-size:15px; margin-bottom:14px;">{book.author}</p>
+        <p class="book-rating" style="font-size:16px;">{'★'.repeat(book.rating)}{'☆'.repeat(5 - book.rating)}</p>
+        <p style="font-family:var(--font-display); font-size:28px; color:var(--forest); margin:18px 0;">£{book.price.toLocaleString()}.00</p>
+        <p>{book.blurb ?? 'A carefully restored copy from the Emblem Books collection, independently valued and available with full publication and ownership history where possible.'}</p>
+        <div class="hero-ctas" style="margin-top:26px;">
+          <a class="btn btn-primary" href="/contact/">Enquire about this book</a>
+          <a class="btn btn-ghost" href="/books/">Back to collection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

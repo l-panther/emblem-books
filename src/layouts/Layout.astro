@@ -1,0 +1,40 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const { title, description = 'Emblem Books — a collection of old and rare collectible books.', active = '' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} · Emblem Books</title>
+  <meta name="description" content={description} />
+  <meta name="description" content="Emblem Books specializes in buying, selling, and valuing rare books. Explore our curated collection of rare literary treasures and receive expert book appraisals." />
+  <meta name="keywords" content="Rare Books, Book Valuation, Rare Book Buying, Selling Rare Books, Book Appraisal, Antique Books, Collectible Books, First Editions, Book Collecting, Rare Book Dealers, Emblem Books" />
+	<meta name="author" content="Leroy Russell" /> <!-- Author -->
+
+	<!-- Favicon for browsers -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Public+Sans:wght@400;500;600;700&family=Berkshire+Swash&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <Header active={active} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+  </script>
+</body>
+</html>

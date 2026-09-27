@@ -1,0 +1,18 @@
+---
+import BookCover from './BookCover.astro';
+const { book } = Astro.props;
+const fullStars = Math.round(book.rating);
+const stars = '★★★★★☆☆☆☆☆'.slice(5 - fullStars, 10 - fullStars);
+---
+
+<a class="book-card" href={`/books/${book.slug}/`}>
+  <div class="book-cover-wrap">
+    <BookCover title={book.title} author={book.author} color={book.color} tag={book.era ? `${book.era} c.` : null} />
+  </div>
+  <div class="book-info">
+    <h3>{book.title}</h3>
+    <p class="book-author">{book.author}</p>
+    <p class="book-rating">{stars}</p>
+    <p class="book-price">£{book.price.toLocaleString()}.00</p>
+  </div>
+</a>

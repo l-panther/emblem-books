@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const regions = [
+  { id: 'uk', label: 'UK', open: true, rates: [
+    { w: 'Up to 1kg', p: '£5.99' }, { w: 'Over 1kg', p: '£11.99' }, { w: 'Over 3kg', p: '£33.99' } ] },
+  { id: 'europe', label: 'Europe', open: false, rates: [
+    { w: 'Up to 1kg', p: '£9.99' }, { w: 'Over 1kg', p: '£18.99' }, { w: 'Over 3kg', p: '£44.99' } ] },
+  { id: 'usa', label: 'USA / Canada', open: false, rates: [
+    { w: 'Up to 1kg', p: '£14.99' }, { w: 'Over 1kg', p: '£26.99' }, { w: 'Over 3kg', p: '£59.99' } ] },
+  { id: 'row', label: 'Rest of the World', open: false, rates: [
+    { w: 'Up to 1kg', p: '£17.99' }, { w: 'Over 1kg', p: '£32.99' }, { w: 'Over 3kg', p: '£69.99' } ] },
+];
+
+const times = [
+  { region: 'UK', days: '1 to 2 days' },
+  { region: 'Europe', days: '2 to 3 days' },
+  { region: 'USA/Canada', days: '3 to 5 days' },
+  { region: 'Rest of the World', days: '5 to 14 days' },
+];
+---
+
+<Layout title="Delivery" active="delivery">
+  <section class="page-banner">
+    <div class="wrap">
+      <p class="eyebrow">Shipping</p>
+      <h1>Delivery</h1>
+      <p>Deliveries are arranged using specialist couriers whenever appropriate, to ensure the safe transport of fragile and valuable books. All orders are dispatched via first-class delivery, both within the UK and internationally.</p>
+      <p>Delivery is included in the purchase price for books valued at over <strong>£500</strong>. For books priced below this amount, the following delivery charges apply:</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap" style="max-width:900px;">
+      <div id="accordion">
+        {regions.map((region, i) => (
+          <div class={`accordion-item ${region.open ? 'is-open' : ''}`} data-index={i}>
+            <button class="accordion-trigger">
+              <span>{region.label}</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-panel">
+              <div class="rate-grid">
+                {region.rates.map((r) => (
+                  <div><span>{r.w}</span><strong>{r.p}</strong></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:56px;">
+        <h2 style="font-size:1.4rem;">Estimated delivery times</h2>
+        <ul class="check-list">
+          {times.map((t) => <li><strong>{t.region}</strong>&nbsp;— {t.days}</li>)}
+        </ul>
+        <p>However, delivery times may differ if repair to books is requested before dispatch.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.querySelectorAll('#accordion .accordion-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.closest('.accordion-item')?.classList.toggle('is-open');
+    });
+  });
+</script>

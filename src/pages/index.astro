@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookCover from '../components/BookCover.astro';
+import { books } from '../data/books.js';
+
+const featured = books.find((b) => b.featured) ?? books[0];
+---
+
+<Layout title="Home" active="home">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Est. in London · Rare &amp; collectible books</p>
+        <h1>For classic, <em>fiction</em>&nbsp;and factual novels</h1>
+        <p class="hero-sub">
+          A hand-restored collection of first editions, signed copies and antiquarian finds —
+          sourced, valued and shipped to collectors worldwide.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/books/">Browse the collection</a>
+          <a class="btn btn-ghost" href="/contact/">Talk to us</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>1780s</strong><span>Earliest editions</span></div>
+          <div><strong>4.6%</strong><span>Avg. annual appreciation</span></div>
+        </div>
+      </div>
+
+      <div class="hero-shelf">
+          <img class="text-center"
+            src="/assets/images/hero/books2.png"
+            alt="Professional window cleaner working on a large glass building"/>
+      
+      
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-strip">
+    <div class="wrap feature-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>
+        </div>
+        <div>
+          <h3>Scheduled Print</h3>
+          <p>We issue printed and illustrated catalogues of rare books twice a year.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.8 5.4 3.8 8.5s-1.3 6.1-3.8 8.5c-2.5-2.4-3.8-5.4-3.8-8.5S9.5 5.9 12 3.5Z"/></svg>
+        </div>
+        <div>
+          <h3>International Service</h3>
+          <p>We exhibit at book fairs in the UK, New Zealand, Canada and USA.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5M12 8v4l3 2"/></svg>
+        </div>
+        <div>
+          <h3>Book Restoration</h3>
+          <p>We also provide a specialist book restoration and rebinding service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="spotlight">
+        <div class="wrap-inner">
+          <div class="spotlight-cover">
+            <div style="width:220px;">
+              <BookCover title={featured.title} author={featured.author} color={featured.color} />
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow" style="color:var(--gold-soft);">Book of the Month</p>
+            <h2>{featured.title}</h2>
+            <p>{featured.blurb}</p>
+            <p class="stars">{'★'.repeat(featured.rating)}{'☆'.repeat(5 - featured.rating)}</p>
+            <a class="btn btn-ghost-invert" href={`/books/${featured.slug}/`}>More info</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head left">
+        <p class="eyebrow">How it works</p>
+        <h2>Selling, valuing &amp; buying</h2>
+      </div>
+      <div class="process">
+        <div class="process-step">
+          <span class="num">01 — Sell</span>
+          <h3>Selling books</h3>
+          <p>We are particularly interested in 18th and 19th century books, and hold a world-renowned stock of later 19th-century women's writing.</p>
+        </div>
+        <div class="process-step">
+          <span class="num">02 — Value</span>
+          <h3>Valuing books</h3>
+          <p>A free initial verbal assessment is recommended. Written valuations are charged at a half-day rate of £300.</p>
+        </div>
+        <div class="process-step">
+          <span class="num">03 — Buy</span>
+          <h3>Buying rare books</h3>
+          <p><a href="/contact/">Contact us</a> with the author, title, edition and condition — we'll come back with a competitive offer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--parchment-deep); padding-top:80px;">
+    <div class="row wrap">
+      <div class="col-12 col-lg-6 p-0">
+        <p class="eyebrow">Watch</p>
+        <h2>The journey starts here</h2>
+        <p>From first sighting to final restoration, every book in the collection is authenticated, repaired by hand, and catalogued before it reaches a shelf.</p>
+        <a class="btn btn-primary" href="/about/">More about Emblem</a>
+      </div>
+
+      <div class="col-12 col-lg-6 text-center">
+        <video class="rounded-4" controls aria-describedby="video-description" poster="assets/images/main/poster.png">
+          <source src="assets/media/emblem_video.webm" type="video/webm">
+          <source src="assets/media/emblem_video_480x360.ogg" type="video/ogg">
+          <source src="assets/media/emblem_video_480x360.mp4" type="video/mp4">
+
+          <p>
+            Your browser does not support embedded video.
+            You can
+            <a href="assets/media/emblem_video_480x360.mp4">download the video file</a>
+            instead.
+          </p>
+        </video>
+
+        <p id="video-description" class="visually-hidden">
+          This video demonstrates the warehouse handling and restoration process used by Emblem Books in Miles End.
+        </p>
+      </div>
+    </div>
+    <p style="color:rgba(247,242,230,.85); font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin:0;">Let's Read Together</p>
+  </section>
+</Layout>

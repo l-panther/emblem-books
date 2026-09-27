@@ -1,0 +1,23 @@
+---
+const { title, author, tag = null, size = 'md' } = Astro.props;
+
+const palette = {
+  forest: ['#1F5C3F', '#123B27'],
+  wine:   ['#6B2230', '#42121C'],
+  navy:   ['#22314F', '#141C30'],
+  tan:    ['#8A6A32', '#5B4620'],
+  rose:   ['#8A3A46', '#5A222A'],
+  gold:   ['#A5822C', '#6E5518'],
+  teal:   ['#1F5C57', '#123B37'],
+};
+const color = Astro.props.color && palette[Astro.props.color] ? Astro.props.color : 'forest';
+const [c1, c2] = palette[color];
+---
+
+<div class="book-cover" style={`background: linear-gradient(155deg, ${c1}, ${c2});`}>
+  {tag && <span class="badge-tag">{tag}</span>}
+  <div>
+    <p class="book-cover-title">{title}</p>
+    <p class="book-cover-author">{author}</p>
+  </div>
+</div>

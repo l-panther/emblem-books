@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookCard from '../components/BookCard.astro';
+import { books, eras } from '../data/books.js';
+---
+
+<Layout title="Books" active="books">
+  <section class="page-banner">
+    <div class="wrap">
+      <p class="eyebrow">The collection</p>
+      <h1>Rare &amp; Collectible Books</h1>
+      <p>A selection of books currently in stock, spanning the 18th to 20th centuries. Can't find a specific title? <a href="/contact/">Contact us</a> — books can often be sourced on request.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="filter-row" id="eraFilters">
+        {eras.map((era) => (
+          <button class="filter-chip" data-era={era.id}>{era.label}</button>
+        ))}
+      </div>
+
+      <div class="book-grid" id="bookGrid">
+        {books.map((book) => (
+          <div class="grid-item" data-era={book.era}>
+            <BookCard book={book} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const initialEra = params.get('era') || 'all';
+
+  const chips = document.querySelectorAll<HTMLElement>('#eraFilters .filter-chip');
+  const items = document.querySelectorAll<HTMLElement>('#bookGrid .grid-item');
+
+  function applyFilter(era: string) {
+    chips.forEach((c) => {
+      c.classList.toggle('is-active', c.dataset.era === era);
+    });
+
+    items.forEach((item) => {
+      const match = era === 'all' || item.dataset.era === era;
+      item.style.display = match ? '' : 'none';
+    });
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const era = chip.dataset.era;
+
+      if (era) {
+        applyFilter(era);
+      }
+    });
+  });
+
+  applyFilter(initialEra);
+</script>
