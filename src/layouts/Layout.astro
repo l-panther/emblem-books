@@ -1,5 +1,6 @@
 ---
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { asset } from '../utils/paths';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -19,8 +20,8 @@ const { title, description = 'Emblem Books — a collection of old and rare coll
 	<meta name="author" content="Leroy Russell" /> <!-- Author -->
 
 	<!-- Favicon for browsers -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/logo.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href={asset('assets/images/logo/logo.png')}>
+  <link rel="apple-touch-icon" sizes="180x180" href={asset('assets/images/logo/apple-touch-icon.png')}>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
