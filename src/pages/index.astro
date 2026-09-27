@@ -20,7 +20,7 @@ const featured = books.find((b) => b.featured) ?? books[0];
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="/books/">Browse the collection</a>
-          <a class="btn btn-ghost" href="/contact/">Talk to us</a>
+          <a class="btn btn-ghost" href={asset('/contact')}>Talk to us</a>
         </div>
         <div class="hero-stats">
           <div><strong>1780s</strong><span>Earliest editions</span></div>
@@ -121,7 +121,7 @@ const featured = books.find((b) => b.featured) ?? books[0];
         <p class="eyebrow">Watch</p>
         <h2>The journey starts here</h2>
         <p>From first sighting to final restoration, every book in the collection is authenticated, repaired by hand, and catalogued before it reaches a shelf.</p>
-        <a class="btn btn-primary" href="/about/">More about Emblem</a>
+        <a class="btn btn-primary" href={asset('/about')}>More about Emblem</a>
       </div>
 
       <div class="col-12 col-lg-6 text-center">
