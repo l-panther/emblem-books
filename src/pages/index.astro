@@ -82,7 +82,7 @@ const featured = books.find((b) => b.featured) ?? books[0];
             <h2>{featured.title}</h2>
             <p>{featured.blurb}</p>
             <p class="stars">{'★'.repeat(featured.rating)}{'☆'.repeat(5 - featured.rating)}</p>
-            <a class="btn btn-ghost-invert" href={`/books/${featured.slug}/`}>More info</a>
+            <a class="btn btn-ghost-invert" href={asset(`/books/${featured.slug/`)}>More info</a>
           </div>
         </div>
       </div>
