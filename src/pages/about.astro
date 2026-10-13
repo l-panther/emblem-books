@@ -1,6 +1,7 @@
 ---
 import { COMPANY_NAME, COMPANY_SLOGAN } from '../lib/config';
 
+import { asset } from '../utils/paths';
 import Layout from '../layouts/Layout.astro';
 import BookCover from '../components/BookCover.astro';
 import { books } from '../data/books.js';
@@ -20,7 +21,7 @@ const featured = books.find((b) => b.featured) ?? books[0];
       </div>
         <aside class="col-lg-4 text-center d-none d-lg-block">
          <img
-          src="/assets/images/main/authors.png"
+          src={asset('/assets/images/main/authors.png')}
           alt="Three classic authors: Oscar Wilde, Percy Shelly and Charlotte Bronte">
       </aside>
     </div>
