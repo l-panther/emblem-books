@@ -1,4 +1,5 @@
 ---
+
 import Layout from '../layouts/Layout.astro';
 import BookCard from '../components/BookCard.astro';
 import { books, eras } from '../data/books.js';
@@ -9,7 +10,7 @@ import { books, eras } from '../data/books.js';
     <div class="wrap">
       <p class="eyebrow">The collection</p>
       <h1>Rare &amp; Collectible Books</h1>
-      <p>A selection of books currently in stock, spanning the 18th to 20th centuries. Can't find a specific title? <a href="/contact/">Contact us</a> — books can often be sourced on request.</p>
+      <p>A selection of books currently in stock, spanning the 18th to 20th centuries. Can't find a specific title? <a href={asset('/contact/')}>Contact us</a> — books can often be sourced on request.</p>
     </div>
   </section>
 
@@ -31,6 +32,7 @@ import { books, eras } from '../data/books.js';
     </div>
   </section>
 </Layout>
+
 <script>
   const params = new URLSearchParams(window.location.search);
   const initialEra = params.get('era') || 'all';
