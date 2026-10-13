@@ -6,7 +6,7 @@ const fullStars = Math.round(book.rating);
 const stars = '★★★★★☆☆☆☆☆'.slice(5 - fullStars, 10 - fullStars);
 ---
 
-<a class="book-card" href={`${import.meta.env.BASE_URL}books/${books.slug}/`}>
+<a class="book-card" href={`${import.meta.env.BASE_URL}books/${featured.slug}/`}>
   <div class="book-cover-wrap">
     <BookCover title={book.title} author={book.author} color={book.color} tag={book.era ? `${book.era} c.` : null} />
   </div>
