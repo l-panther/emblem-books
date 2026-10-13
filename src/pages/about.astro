@@ -17,7 +17,7 @@ const featured = books.find((b) => b.featured) ?? books[0];
         <h1>{COMPANY_NAME}</h1>
         <p>Emblem sells rare books direct via e-commerce and ships to any location. The collection is extensive and includes rare first editions and signed copies. All books are restored by expert craftsmen before sale, ensuring they arrive in excellent condition.</p>
         <p>Emblem specialises in 19th, 20th, and 18th century fiction and poetry. Occasionally, pre-18th century and non-fiction items are also available. All books can be independently valued on site before purchase — rare books can be a strong investment, with some appreciating by up to 15% in a single year and an average annual increase of 4.6%.</p>
-        <p>Please <a href="/books/">browse our collection</a>. If something you are looking for is not currently available, feel free to <a href="/contact/">contact us</a>, and assistance will be provided.</p>
+        <p>Please <a href={asset('/books/')}>browse our collection</a>. If something you are looking for is not currently available, feel free to <a href={asset('/contact/')}>contact us</a>, and assistance will be provided.</p>
       </div>
         <aside class="col-lg-4 text-center d-none d-lg-block">
          <img
