@@ -1,4 +1,5 @@
 ---
+import { asset } from '../utils/paths';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -60,7 +61,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="wrap" style="text-align:center; max-width:640px;">
       <h2>Thinking about buying, selling, or having a collection valued?</h2>
       <p>Our team can provide an initial verbal assessment free of charge, followed by a cost estimate before any formal valuation work begins.</p>
-      <a class="btn btn-primary" href="/contact/">Request a valuation</a>
+      <a class="btn btn-primary" href={asset('/contact/')}>Request a valuation</a>
     </div>
   </section>
 </Layout>
