@@ -179,3 +179,168 @@ const tailItems = [
 
   </div>
 </header>
+
+
+<style>
+  /* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(247, 242, 230, 0.96);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.site-header .taglet {
+  display: none;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+.site-header .toolbar-row {
+  justify-content: space-between;
+  padding-top: 12px;
+}
+.brand-compact { display: flex; }
+.brand-compact .brand-mark { width: 34px; height: 34px; }
+.brand-compact .brand-name { font-size: 22px; }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 46px;
+  height: 46px;
+  flex: none;
+}
+.brand-name {
+  font-family: var(--font-wordmark);
+  font-size: 28px;
+  color: var(--forest);
+  line-height: 1;
+  display: block;
+}
+.brand-tag {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  display: none;
+  margin-top: 2px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-sans);
+}
+.nav a, .nav button.nav-link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  text-align: left;
+}
+.nav a:hover, .nav button.nav-link:hover { color: var(--forest); }
+.nav a.is-active {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+/* "More Books" — Bootstrap dropdown, restyled to match the site */
+.dropdown-menu.nav-dropdown {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 8px;
+  font-family: var(--font-sans);
+}
+.dropdown-menu.nav-dropdown .dropdown-item {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 9px 12px;
+  border-radius: 6px;
+}
+.dropdown-menu.nav-dropdown .dropdown-item:hover,
+.dropdown-menu.nav-dropdown .dropdown-item:focus {
+  background: var(--forest-tint);
+  color: var(--forest-dark);
+}
+
+/* Menu button — Bootstrap offcanvas trigger, mobile only */
+.menu-toggle {
+  display: inline-flex;
+  background: none;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Sidebar — Bootstrap offcanvas, restyled to match the site */
+#siteNav.offcanvas {
+  background: var(--paper);
+  max-width: 320px;
+}
+#siteNav .offcanvas-header {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 20px;
+}
+#siteNav .offcanvas-title.brand-name { font-size: 22px; }
+#siteNav .offcanvas-body { padding: 16px 20px 24px; }
+
+@media (min-width: 980px) {
+  .brand-tag { display: block; }
+  .site-header .taglet { display: flex; }
+  .site-header .toolbar-row { justify-content: flex-end; padding-top: 0; }
+  .brand-compact { display: none; }
+  .menu-toggle { display: none !important; }
+
+  /* Force the desktop layout explicitly rather than relying solely on
+     Bootstrap's built-in responsive-offcanvas breakpoints (which default to
+     992px, not this site's 900px) — same belt-and-braces override used
+     elsewhere to reliably show inline nav at desktop width. */
+  #siteNav.offcanvas {
+    position: static !important;
+    z-index: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+  #siteNav .offcanvas-header { display: none !important; }
+  #siteNav .offcanvas-body {
+    display: flex !important;
+    padding: 0 !important;
+    overflow-y: visible !important;
+  }
+  .nav { flex-direction: row; align-items: center; gap: 4px; }
+}
+</style>
