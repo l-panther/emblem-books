@@ -1,68 +1,53 @@
 ---
+import { COMPANY_NAME, COMPANY_SLOGAN } from '../lib/config';
+
 import { asset } from '../utils/paths';
 import Layout from '../layouts/Layout.astro';
-import BookCard from '../components/BookCard.astro';
-import { books, eras } from '../data/books.js';
+import BookCover from '../components/BookCover.astro';
+import { books } from '../data/books.js';
+
+const featured = books.find((b) => b.featured) ?? books[0];
 ---
 
 <Layout 
-  title="Explore Our Book Collection" 
-  description="Browse the Emblem Books collection and discover titles for readers and collectors. Explore books that inspire, inform and make meaningful additions to your library."
-  active="books">
+  title="About Us" 
+  description="Learn more about Emblem Books, our passion for literature and our commitment to helping readers and collectors discover books worth exploring and preserving."
+  active="about">
   <section class="page-banner">
-    <div class="wrap">
-      <p class="eyebrow">The collection</p>
-      <h1>Rare &amp; Collectible Books</h1>
-      <p>A selection of books currently in stock, spanning the 18th to 20th centuries. Can't find a specific title? <a href={asset('/contact/')}>Contact us</a> — books can often be sourced on request.</p>
+    <div class="row wrap">
+      <div class="col-12 col-lg-8">
+        <p class="eyebrow">Our story</p>
+        <h1>{COMPANY_NAME}</h1>
+        <p>Emblem sells rare books direct via e-commerce and ships to any location. The collection is extensive and includes rare first editions and signed copies. All books are restored by expert craftsmen before sale, ensuring they arrive in excellent condition.</p>
+        <p>Emblem specialises in 19th, 20th, and 18th century fiction and poetry. Occasionally, pre-18th century and non-fiction items are also available. All books can be independently valued on site before purchase — rare books can be a strong investment, with some appreciating by up to 15% in a single year and an average annual increase of 4.6%.</p>
+        <p>Please <a href={asset('/books/')}>browse our collection</a>. If something you are looking for is not currently available, feel free to <a href={asset('/contact/')}>contact us</a>, and assistance will be provided.</p>
+      </div>
+        <aside class="col-lg-4 text-center d-none d-lg-block">
+         <img
+          src={asset('/assets/images/main/authors.png')}
+          alt="Three classic authors: Oscar Wilde, Percy Shelly and Charlotte Bronte">
+      </aside>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
+  <section class="section">
     <div class="wrap">
-      <div class="filter-row" id="eraFilters">
-        {eras.map((era) => (
-          <button class="filter-chip" data-era={era.id}>{era.label}</button>
-        ))}
-      </div>
-
-      <div class="book-grid" id="bookGrid">
-        {books.map((book) => (
-          <div class="grid-item" data-era={book.era}>
-            <BookCard book={book} />
+      <div class="spotlight">
+        <div class="wrap-inner">
+          <div class="spotlight-cover">
+            <div style="width:220px;">
+              <BookCover title={featured.title} author={featured.author} color={featured.color} />
+            </div>
           </div>
-        ))}
+          <div>
+            <p class="eyebrow" style="color:var(--gold-soft);">Book of the Month</p>
+            <h2>{featured.title}</h2>
+            <p>{featured.blurb}</p>
+            <p class="stars">{'★'.repeat(featured.rating)}{'☆'.repeat(5 - featured.rating)}</p>
+            <a class="btn btn-ghost-invert" href={`${import.meta.env.BASE_URL}books/${featured.slug}/`}>More info</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </Layout>
-
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const initialEra = params.get('era') || 'all';
-
-  const chips = document.querySelectorAll<HTMLElement>('#eraFilters .filter-chip');
-  const items = document.querySelectorAll<HTMLElement>('#bookGrid .grid-item');
-
-  function applyFilter(era: string) {
-    chips.forEach((c) => {
-      c.classList.toggle('is-active', c.dataset.era === era);
-    });
-
-    items.forEach((item) => {
-      const match = era === 'all' || item.dataset.era === era;
-      item.style.display = match ? '' : 'none';
-    });
-  }
-
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const era = chip.dataset.era;
-
-      if (era) {
-        applyFilter(era);
-      }
-    });
-  });
-
-  applyFilter(initialEra);
-</script>
