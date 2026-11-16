@@ -3,7 +3,10 @@ import { asset } from '../utils/paths';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Books as Investment" active="investment">
+<Layout 
+  title="Books as Investments" 
+  description="Explore books as potential investments. Learn how rarity, condition, provenance and demand can influence the collectability and value of books."
+  active="investment">
   <section class="page-banner">
     <div class="wrap">
       <p class="eyebrow">Rare books as an asset</p>
@@ -65,3 +68,33 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+
+<style>
+
+/* ---------- stat cards (investment page) ---------- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.stat-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 30px 26px;
+  text-align: center;
+}
+.stat-card strong {
+  font-family: var(--font-display);
+  font-size: 34px;
+  color: var(--forest);
+  display: block;
+  margin-bottom: 6px;
+}
+.stat-card span {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+</style>
