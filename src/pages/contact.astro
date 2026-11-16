@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Contact Us" active="contact">
+<Layout 
+  title="Contact Us" 
+  description="Get in touch with Emblem Books for enquiries about our book collection, availability, deliveries and general information. We're here to help."
+  active="contact">
   <section class="page-banner">
     <div class="wrap">
       <p class="eyebrow">Get in touch</p>
@@ -104,6 +107,158 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+
+<style>
+/* ---------- form (contact) ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+}
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-sans);
+}
+.contact-line .icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--forest-tint); color: var(--forest);
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.field textarea { resize: vertical; min-height: 140px; }
+.char-count { text-align: right; font-family: var(--font-sans); font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
+
+.field-error {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: #d64545;
+  min-height: 1.1em;
+}
+
+.field input.is-invalid,
+.field select.is-invalid,
+.field textarea.is-invalid {
+  border-color: #d64545;
+  box-shadow: 0 0 0 1px rgba(214, 69, 69, 0.25);
+}
+.field input.is-valid,
+.field select.is-valid,
+.field textarea.is-valid {
+  border-color: #4a7c3c;
+}
+
+.message-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+.message-meta-row .field-error {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+.message-meta-row .char-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 0.85rem;
+  padding-top: 0.05rem;
+}
+
+/* Alert panel above the form */
+.form-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+.form-alert--success {
+  background: #eaf4e6;
+  color: #345c28;
+  border: 1px solid #bfe0b3;
+}
+.form-alert--error {
+  background: #fbeaea;
+  color: #7a2323;
+  border: 1px solid #f0bcbc;
+}
+.form-alert span {
+  flex: 1;
+}
+.form-alert button {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+}
+.form-alert button:hover {
+  opacity: 1;
+}
+
+.btn-primary {
+  position: relative;
+}
+.btn-primary.is-loading .btn-label {
+  visibility: hidden;
+}
+.btn-spinner {
+  display: none;
+}
+.btn-primary.is-loading .btn-spinner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 980px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+
 
 <script>
   const textarea = document.getElementById('message') as HTMLTextAreaElement | null;
@@ -266,106 +421,3 @@ import Layout from '../layouts/Layout.astro';
     }
   });
 </script>
-
-<style>
-  .field-error {
-    margin: 0.35rem 0 0;
-    font-size: 0.85rem;
-    color: #d64545;
-    min-height: 1.1em;
-  }
-
-  .field input.is-invalid,
-  .field select.is-invalid,
-  .field textarea.is-invalid {
-    border-color: #d64545;
-    box-shadow: 0 0 0 1px rgba(214, 69, 69, 0.25);
-  }
-  .field input.is-valid,
-  .field select.is-valid,
-  .field textarea.is-valid {
-    border-color: #4a7c3c;
-  }
-
-  .message-meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-top: 0.35rem;
-  }
-  .message-meta-row .field-error {
-    margin: 0;
-    flex: 1;
-    min-width: 0;
-  }
-  .message-meta-row .char-count {
-    flex-shrink: 0;
-    white-space: nowrap;
-    color: #6b7280;
-    font-size: 0.85rem;
-    padding-top: 0.05rem;
-  }
-
-  /* Alert panel above the form */
-  .form-alert {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-  }
-  .form-alert--success {
-    background: #eaf4e6;
-    color: #345c28;
-    border: 1px solid #bfe0b3;
-  }
-  .form-alert--error {
-    background: #fbeaea;
-    color: #7a2323;
-    border: 1px solid #f0bcbc;
-  }
-  .form-alert span {
-    flex: 1;
-  }
-  .form-alert button {
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    line-height: 1;
-    cursor: pointer;
-    color: inherit;
-    opacity: 0.7;
-  }
-  .form-alert button:hover {
-    opacity: 1;
-  }
-
-  .btn-primary {
-    position: relative;
-  }
-  .btn-primary.is-loading .btn-label {
-    visibility: hidden;
-  }
-  .btn-spinner {
-    display: none;
-  }
-  .btn-primary.is-loading .btn-spinner {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    margin: -9px 0 0 -9px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-</style>
