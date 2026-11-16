@@ -20,7 +20,10 @@ const times = [
 ];
 ---
 
-<Layout title="Delivery" active="delivery">
+<Layout 
+  title="Delivery Information" 
+  description="Find delivery information for Emblem Books, including shipping arrangements and useful guidance to help you understand how your book orders are delivered."
+  active="delivery">
   <section class="page-banner">
     <div class="wrap">
       <p class="eyebrow">Shipping</p>
@@ -60,6 +63,54 @@ const times = [
     </div>
   </section>
 </Layout>
+
+
+<style>
+/* ---------- accordion (delivery) ---------- */
+.accordion-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: var(--parchment-deep);
+  border: none;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-size: 13.5px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.accordion-item.is-open .accordion-trigger {
+  background: var(--forest);
+  color: var(--paper);
+}
+.accordion-trigger .chev { transition: transform .2s ease; }
+.accordion-item.is-open .accordion-trigger .chev { transform: rotate(180deg); }
+.accordion-panel {
+  display: none;
+  padding: 30px 24px;
+}
+.accordion-item.is-open .accordion-panel { display: block; }
+.rate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.rate-grid div span { display: block; font-family: var(--font-sans); font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; }
+.rate-grid div strong { font-family: var(--font-display); font-size: 26px; color: var(--forest); }
+</style>
+
 
 <script>
   document.querySelectorAll('#accordion .accordion-trigger').forEach((btn) => {
